@@ -1,0 +1,86 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyN3JsGQ7E0hv7BHxFffoI1x",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/avinash202006/NLP/blob/main/linear%20regression\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2snnynvtN6r_",
+        "outputId": "d99283fe-ebb7-4e3a-9599-2620243e6988"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Slope (m): 0.6\n",
+            "Intercept (b): 2.2\n",
+            "\n",
+            "Predicted values:\n",
+            "x = 1, Predicted y = 2.80\n",
+            "x = 2, Predicted y = 3.40\n",
+            "x = 3, Predicted y = 4.00\n",
+            "x = 4, Predicted y = 4.60\n",
+            "x = 5, Predicted y = 5.20\n"
+          ]
+        }
+      ],
+      "source": [
+        "# Linear Regression using Least Squares Method\n",
+        "\n",
+        "# Sample data\n",
+        "x = [1, 2, 3, 4, 5]\n",
+        "y = [2, 4, 5, 4, 5]\n",
+        "\n",
+        "n = len(x)\n",
+        "\n",
+        "# Calculate sums\n",
+        "sum_x = sum(x)\n",
+        "sum_y = sum(y)\n",
+        "sum_xy = sum(x[i] * y[i] for i in range(n))\n",
+        "sum_x2 = sum(xi * xi for xi in x)\n",
+        "\n",
+        "# Calculate slope (m) and intercept (b)\n",
+        "m = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x ** 2)\n",
+        "b = (sum_y - m * sum_x) / n\n",
+        "\n",
+        "print(\"Slope (m):\", m)\n",
+        "print(\"Intercept (b):\", b)\n",
+        "\n",
+        "# Predict y values\n",
+        "print(\"\\nPredicted values:\")\n",
+        "for xi in x:\n",
+        "    y_pred = m * xi + b\n",
+        "    print(f\"x = {xi}, Predicted y = {y_pred:.2f}\")"
+      ]
+    }
+  ]
+}
