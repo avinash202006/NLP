@@ -1,0 +1,114 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOcfnVJsTa8bRDG3Q5k5jqf",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/avinash202006/NLP/blob/main/CO_1(AT_3_PG_2)\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "hnfB7FgjqoKj",
+        "outputId": "1153fb47-2252-4bf7-8609-0909dbb875dc"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter number of strings: 3\n",
+            "Enter string: abaab\n",
+            "Transition Path:\n",
+            "q0 → q1 → q2 → q1 → q1 → q2\n",
+            "Accepted\n",
+            "\n",
+            "Enter string:  ab\n",
+            "Invalid Input\n",
+            "\n",
+            "Enter string: aabb\n",
+            "Transition Path:\n",
+            "q0 → q1 → q1 → q2 → q0\n",
+            "Rejected\n",
+            "\n"
+          ]
+        }
+      ],
+      "source": [
+        "# DFA Simulator\n",
+        "\n",
+        "# DFA Description\n",
+        "states = {\"q0\", \"q1\", \"q2\"}\n",
+        "alphabet = {\"a\", \"b\"}\n",
+        "\n",
+        "# Transition Table\n",
+        "transition = {\n",
+        "    (\"q0\", \"a\"): \"q1\",\n",
+        "    (\"q0\", \"b\"): \"q0\",\n",
+        "    (\"q1\", \"a\"): \"q1\",\n",
+        "    (\"q1\", \"b\"): \"q2\",\n",
+        "    (\"q2\", \"a\"): \"q1\",\n",
+        "    (\"q2\", \"b\"): \"q0\"\n",
+        "}\n",
+        "\n",
+        "initial_state = \"q0\"\n",
+        "final_states = {\"q2\"}\n",
+        "\n",
+        "# Number of test strings\n",
+        "n = int(input(\"Enter number of strings: \"))\n",
+        "\n",
+        "for _ in range(n):\n",
+        "    string = input(\"Enter string: \")\n",
+        "\n",
+        "    current_state = initial_state\n",
+        "    path = [current_state]\n",
+        "    valid = True\n",
+        "\n",
+        "    for symbol in string:\n",
+        "        if symbol not in alphabet:\n",
+        "            valid = False\n",
+        "            break\n",
+        "\n",
+        "        current_state = transition[(current_state, symbol)]\n",
+        "        path.append(current_state)\n",
+        "\n",
+        "    if not valid:\n",
+        "        print(\"Invalid Input\")\n",
+        "    else:\n",
+        "        print(\"Transition Path:\")\n",
+        "        print(\" → \".join(path))\n",
+        "\n",
+        "        if current_state in final_states:\n",
+        "            print(\"Accepted\")\n",
+        "        else:\n",
+        "            print(\"Rejected\")\n",
+        "\n",
+        "    print()"
+      ]
+    }
+  ]
+}
